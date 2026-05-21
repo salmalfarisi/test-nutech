@@ -63,14 +63,14 @@ export class TransactionService {
       const transaction = trxRepo.create(insertData);
 
       await trxRepo.save(transaction);
-      try {
-        publishEvent("transaction.created", {
-          invoice_number: transaction.invoiceNumber,
-          email: user.email,
-        });
-      } catch (err) {
-        console.error("RabbitMQ publish failed:", err);
-      }
+      // try {
+      //   publishEvent("transaction.created", {
+      //     invoice_number: transaction.invoiceNumber,
+      //     email: user.email,
+      //   });
+      // } catch (err) {
+      //   console.error("RabbitMQ publish failed:", err);
+      // }
 
       return {
         invoice_number: transaction.invoiceNumber,
