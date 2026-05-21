@@ -39,6 +39,9 @@ app.use((err: any, req: any, res: any, next: any) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+console.log("DB URL: |", process.env.DATABASE_URL, "|");
+console.log("JWT_SECRET: |", process.env.JWT_SECRET, "|");
 AppDataSource.initialize()
   .then(() => {
     console.log("Database connected");
