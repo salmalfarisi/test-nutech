@@ -2,50 +2,50 @@ import { IsEmail, IsString, MinLength, IsNotEmpty, IsOptional } from "class-vali
 
 export class RegisterDTO {
   @IsEmail({}, { message: "Invalid email format" })
-  email: string;
+  email!: string;
 
   @IsString({ message: "First name must be a string" })
   @IsNotEmpty()
-  first_name: string;
+  first_name!: string;
 
   @IsString({ message: "Last name must be a string" })
   @IsNotEmpty()
-  last_name: string;
+  last_name!: string;
 
   @IsString()
   @MinLength(8, { message: "Password must be at least 8 characters" })
-  password: string;
+  password!: string;
 }
 
 export class LoginDTO {
   @IsEmail({}, { message: "Invalid email format" })
   @IsNotEmpty()
-  email: string;
+  email!: string;
 
   @IsString()
   @IsNotEmpty()
-  password: string;
+  password!: string;
 }
 
 export class ProfileDTO {
   @IsEmail({}, { message: "Invalid email format" })
   @IsOptional()
-  email: string;
+  email!: string;
 
   @IsString({ message: "First name must be a string" })
   @IsOptional()
-  first_name: string;
+  first_name!: string;
 
   @IsString({ message: "Last name must be a string" })
   @IsOptional()
-  last_name: string;
+  last_name!: string;
 
   @IsString()
   @IsOptional()
   @MinLength(8, { message: "Password must be at least 8 characters" })
-  password: string;
+  password!: string;
   
   @IsString()
   @IsOptional()
-  profile_image: string;
+  profile_image!: string;
 }

@@ -1,7 +1,7 @@
 export class SuccessDto<T> {
-  success: boolean;
-  message: string;
-  status: number;
+  success!: boolean;
+  message!: string;
+  status!: number;
   data?: T;
 
   constructor(message: string, status: number, data?: T) {

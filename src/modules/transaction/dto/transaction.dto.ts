@@ -8,26 +8,26 @@ import {
 export class TransactionDTO {
   @IsString()
   @IsNotEmpty()
-  service_code: string;
+  service_code!: string;
 }
 
 export class TopUpAmountDTO {
   @IsInt({ message: 'Amount must number' })
   @Min(1, { message: 'Top up amount at least 1 $' })
-  top_up_amount: number;
+  top_up_amount!: number;
 }
 
 export class PaginationDTO {
   @IsInt({ message: 'Offset haru angka' })
   @Min(1, { message: 'Offset minimal 1' })
-  offset: number;
+  offset!: number;
   
   @IsInt({ message: 'Limit haru angka' })
   @Min(1, { message: 'Limit minimal 1' })
-  limit: number;
+  limit!: number;
 }
 
 export class Trans {
-  service: string;
-  amount: number
+  service!: string;
+  amount!: number
 }

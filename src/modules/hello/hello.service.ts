@@ -1,5 +1,5 @@
-import { Banner } from "../../../entities/banners.entities";
-import { Service } from "../../../entities/services.entities";
+import { Banner } from "../../entities/banners.entities";
+import { Service } from "../../entities/services.entities";
 import { HelloDto } from "./dto/hello.dto";
 import { AppDataSource } from "../../config/database";
 

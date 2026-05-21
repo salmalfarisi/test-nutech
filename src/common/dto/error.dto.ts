@@ -1,6 +1,6 @@
 export class ErrorDto {
-  success: boolean;
-  message: string;
+  success!: boolean;
+  message!: string;
   status: number
   error?: unknown;
 

@@ -1,8 +1,8 @@
 import { AppDataSource } from "../../config/database";
-import { User } from "../../../entities/users.entities";
-import { Transaction } from "../../../entities/transactions.entities";
+import { User } from "../../entities/users.entities";
+import { Transaction } from "../../entities/transactions.entities";
 import { PaginationDTO, Trans, TransactionDTO } from "./dto/transaction.dto";
-import { Service } from "../../../entities/services.entities";
+import { Service } from "../../entities/services.entities";
 import { publishEvent } from "../../config/rabbitmq";
 
 export class TransactionService {
