@@ -38,6 +38,10 @@ app.use((err: any, req: any, res: any, next: any) => {
   next();
 });
 
+app.get("/ping", (req, res) => {
+  res.json({ ok: true });
+});
+
 const PORT = process.env.PORT || 3000;
 
 console.log("DB URL: |", process.env.DATABASE_URL, "|");
