@@ -4,12 +4,20 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
+    "clean": "rm -rf dist",
+    "prestart": "npm run build",
     "start": "node dist/server.js",
+    "worker": "ts-node-dev src/worker.ts",
+
     "test": "jest --runInBand",
     "test:watch": "jest --watch",
+
     "typeorm": "typeorm-ts-node-commonjs -d src/config/database.ts",
-    "migration:generate": "npm run typeorm -- migration:generate migrations/init",
-    "migration:run": "npm run typeorm -- migration:run"
+    "migration:generate": "npm run typeorm -- migration:generate src/migrations/auto",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:run:prod": "node dist/migration-runner.js",
+
+    "check": "tsc --noEmit"
   },
   "dependencies": {
     "amqplib": "^0.10.9",
@@ -20,8 +28,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
+    "pg": "^8.21.0",
     "reflect-metadata": "^0.2.2",
-    "sqlite3": "^5.1.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^0.3.20"

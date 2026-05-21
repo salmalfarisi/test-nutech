@@ -11,6 +11,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
+swagger(app);
+app.use(routes);
+app.get("/", (_, res) => {
+  res.redirect("/docs");
+});
+
 app.use((err: any, req: any, res: any, next: any) => {
   if (err instanceof multer.MulterError) {
     return res.status(400).json({
@@ -27,12 +34,6 @@ app.use((err: any, req: any, res: any, next: any) => {
   }
 
   next();
-});
-
-swagger(app);
-app.use(routes);
-app.get("/", (_, res) => {
-  res.redirect("/docs");
 });
 
 const PORT = process.env.PORT || 3000;

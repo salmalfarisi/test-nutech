@@ -36,7 +36,4 @@ export class User {
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
-
-  @OneToMany(() => Transaction, (t) => t.user)
-  transactions?: Transaction[];
 }
