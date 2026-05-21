@@ -6,6 +6,8 @@ import routes from "./routes";
 import dotenv from "dotenv";
 import multer from "multer";
 
+console.log("SERVER FILE LOADED");
+
 dotenv.config();
 
 const app = express();
