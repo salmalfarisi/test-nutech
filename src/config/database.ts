@@ -24,7 +24,11 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
 
-  entities: ["dist/entities/**/*.js", "entities/**/*.ts"],
+  entities: [
+    "src/entities/**/*.ts",
+    "dist/entities/**/*.js",
+    __dirname + "/../entities/**/*.{js}",
+  ],
   // migrations: [path.join(__dirname, "../../migrations/**/*.{ts,js}")],
   migrations: ["dist/migrations/**/*.js", "migrations/**/*.{ts,js}"],
 

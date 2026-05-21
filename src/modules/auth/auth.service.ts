@@ -71,9 +71,9 @@ export class AuthService {
 
   async profile(email: string) {
     const repo = AppDataSource.getRepository(User);
-
+    
     const profile = await repo.findOne({
-        where: { email: email },
+      where: { email: email },
     });
 
     return {
