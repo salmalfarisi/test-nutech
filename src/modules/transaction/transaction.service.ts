@@ -3,7 +3,7 @@ import { User } from "../../../entities/users.entities";
 import { Transaction } from "../../../entities/transactions.entities";
 import { PaginationDTO, Trans, TransactionDTO } from "./dto/transaction.dto";
 import { Service } from "../../../entities/services.entities";
-import { Banner } from "../../../entities/banners.entities";
+import { publishEvent } from "../../config/rabbitmq";
 
 export class TransactionService {
   async makeTransaction(operation: string, email: string, data: Trans) {
@@ -16,7 +16,7 @@ export class TransactionService {
       });
 
       if (!user) {
-        return "Invalid token";
+        throw new Error("Token kadaluarsa atau tidak valid");
       }
 
       let newBalance = user.balance;
@@ -62,7 +62,15 @@ export class TransactionService {
 
       const transaction = trxRepo.create(insertData);
 
-      // await trxRepo.save(transaction);
+      await trxRepo.save(transaction);
+      try {
+        publishEvent("transaction.created", {
+          invoice_number: transaction.invoiceNumber,
+          email: user.email,
+        });
+      } catch (err) {
+        console.error("RabbitMQ publish failed:", err);
+      }
 
       return {
         invoice_number: transaction.invoiceNumber,
@@ -83,7 +91,6 @@ export class TransactionService {
         where: { email: email },
     });
     
-    console.log(data);
     const history = await repo.find({
         where: { userId: profile?.id },
         take: data.limit,
