@@ -17,22 +17,38 @@ import path from "path";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
+// export const AppDataSource = new DataSource({
+//   type: "postgres",
+//   url: process.env.DATABASE_URL,
+
+//   synchronize: false,
+//   logging: true,
+
+//   entities: [
+//     // "src/entities/**/*.ts",
+//     // "dist/entities/**/*.js",
+//     __dirname + "/../entities/**/*.{js}",
+//   ],
+//   // migrations: [path.join(__dirname, "../../migrations/**/*.{ts,js}")],
+//   migrations: ["dist/migrations/**/*.js", "migrations/**/*.{ts,js}"],
+
+//   ssl: process.env.NODE_ENV === "production"
+//     ? { rejectUnauthorized: false }
+//     : false,
+// });
+
 export const AppDataSource = new DataSource({
   type: "postgres",
   url: process.env.DATABASE_URL,
 
   synchronize: false,
-  logging: true,
+  logging: false,
 
-  entities: [
-    "src/entities/**/*.ts",
-    "dist/entities/**/*.js",
-    __dirname + "/../entities/**/*.{js}",
-  ],
-  // migrations: [path.join(__dirname, "../../migrations/**/*.{ts,js}")],
-  migrations: ["dist/migrations/**/*.js", "migrations/**/*.{ts,js}"],
+  entities: [__dirname + "/../entities/**/*.js"],
+  migrations: [],
 
-  ssl: process.env.NODE_ENV === "production"
-    ? { rejectUnauthorized: false }
-    : false,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
 });
